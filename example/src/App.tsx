@@ -16,8 +16,11 @@ import type {
   TextChangeData,
 } from 'react-native-cn-quill';
 import { customFonts } from './customFonts';
+import { FontAwesome } from '@expo/vector-icons';
 const clockIcon = require('../assets/icons/clock.png');
-
+const boldIcon = <FontAwesome name="bold" />;
+const italicIcon = <FontAwesome name="italic" />;
+const underlineIcon = <FontAwesome name="underline" />;
 export default class App extends React.Component<any, any> {
   private _editor: React.RefObject<QuillEditor>;
   constructor(props: any) {
@@ -149,9 +152,9 @@ export default class App extends React.Component<any, any> {
               // Otherwise ignore
             }
           }
-          
+
           Quill.register(PlainListItem, true);
-            
+
           `}
           defaultFontFamily={customFonts[0].name}
           customFonts={customFonts}
@@ -198,6 +201,9 @@ export default class App extends React.Component<any, any> {
             actions: ['image', 'clock'],
             icons: {
               clock: clockIcon,
+              bold: boldIcon,
+              italic: italicIcon,
+              underline: underlineIcon,
             },
           }}
         />

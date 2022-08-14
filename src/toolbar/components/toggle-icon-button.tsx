@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import {
   TouchableWithoutFeedback,
   View,
@@ -31,10 +31,17 @@ export const ToggleIconButton: React.FC<Props> = (props) => {
   const imageStyle = styles?.selection?.iconToggle?.image
     ? styles.selection.iconToggle.image(defaultStyles.image)
     : defaultStyles.image;
+
+  const buttonIcon = isValidElement(source) ? (
+    source
+  ) : (
+    <Image source={source} style={imageStyle} />
+  );
+
   return (
     <TouchableWithoutFeedback onPress={handlePresss}>
       <View style={toolStyle}>
-        <Image source={source} style={imageStyle} />
+        {buttonIcon}
         {selected && <View style={overlayStyle} />}
       </View>
     </TouchableWithoutFeedback>
